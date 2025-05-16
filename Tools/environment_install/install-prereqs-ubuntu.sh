@@ -307,15 +307,14 @@ elif [ ${RELEASE_CODENAME} == 'bookworm' ]; then
     SITL_PKGS+=" libpython3-stdlib" # for argparse
 elif [ ${RELEASE_CODENAME} == 'lunar' ]; then
     SITL_PKGS+=" libpython3-stdlib" # for argparse
-elif [ ${RELEASE_CODENAME} != 'mantic' ] &&
-     [ ${RELEASE_CODENAME} != 'noble' ] && 
-     [ ${RELEASE_CODENAME} != 'oracular' ] &&
-     [ ${RELEASE_CODENAME} != 'plucky' ] &&
-     true; then
+elif [[ "${RELEASE_CODENAME}" != "mantic" && 
+        "${RELEASE_CODENAME}" != "noble" && 
+        "${RELEASE_CODENAME}" != "oracular" && 
+        "${RELEASE_CODENAME}" != "plucky" ]]; then
     if apt-cache search python-argparse | grep argp; then
         SITL_PKGS+=" python-argparse"
     elif apt-cache search python3-argparse | grep argp; then
-        SITL_PKGS+=" python3-argparse"
+        SITL_PKGS+=" python3-argparse*"
     fi
 fi
 
